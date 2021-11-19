@@ -111,6 +111,7 @@ class PopularTab extends Component {
                 //渲染
                 renderItem={data => this.renderItem(data)}
                 keyExtractor={item => "" + item.id}
+                //上拉刷新
                 refreshControl={
                     <RefreshControl
                         title={'Loading'}
@@ -152,7 +153,8 @@ class PopularTab extends Component {
     }
 }
 
-// 将dispatch映射给onThemeChange
+// 将dispatch映射给onThemeChange，stat中的方法不应过多，不然调用render会过多，降低效率
+//只让当前页面只关心当前页面需要关心的即可
 const mapStateToProps = state => ({
     popular: state.popular
 });
@@ -160,7 +162,7 @@ const mapDispatchToProps = dispatch => ({
     onRefreshPopular: (storeName, url, pageSize) => dispatch(action.onRefreshPopular(storeName, url, pageSize)),
     onLoadMorePopular: (storeName, pageIndex, pageSize, items, callBack) => dispatch(action.onLoadMorePopular(storeName, pageIndex, pageSize, items, callBack)),
 });
-//将函数注入到props里面
+//将函数注入到props里面 connect只是个function，并不一定非要放在export后面
 const PopularTabPage = connect(mapStateToProps, mapDispatchToProps)(PopularTab);
 
 const styles = StyleSheet.create({
