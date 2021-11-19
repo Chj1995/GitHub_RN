@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-12 11:04:54
- * @LastEditTime: 2021-11-17 16:42:19
+ * @LastEditTime: 2021-11-18 13:53:34
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /GitHub_RN/js/expand/dao/HiNet.tsx
@@ -13,7 +13,7 @@ import Constants from './Constants';
  * 发送get请求 
  * @param api 要请求的接口
  */
- export function get(api: string) {
+export function get(api: string) {
     return async (params?: {}) => {
         const boarding = await getBoarding();
         const { headers, url } = Constants;
@@ -34,14 +34,14 @@ export function post(api: string) {
      * 第一个参数作为body参数，第二个参数作为URL path或者查询参数
      */
     return (params?: {}) => {
-        return async (queryParams?:{}|string) => {
-            const {headers,url}=Constants;
+        return async (queryParams?: {} | string) => {
+            const { headers, url } = Constants;
             const boarding = await getBoarding();
-            var data=params instanceof FormData ? params:JSON.stringify(params);
-            return handleData(fetch(buildParams(url+api,queryParams),{
+            var data = params instanceof FormData ? params : JSON.stringify(params);
+            return handleData(fetch(buildParams(url + api, queryParams), {
                 method: 'POST',
-                body:data,
-                headers:{
+                body: data,
+                headers: {
                     'content-type': 'application/json',
                     ...headers,
                     'boarding-pass': boarding || ''
@@ -69,7 +69,7 @@ function handleData(doAction: Promise<any>) {
             if (typeof result === 'string') {
                 throw new Error(result);
             }
-            const {code, msg, data:{list=undefined} = {} } = result;
+            const { code, msg, data: { list = undefined } = {} } = result;
             if (code === 401) {//跳转到登录页
                 NavigationUtil.login();
                 return;

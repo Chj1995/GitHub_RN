@@ -1,8 +1,13 @@
 [
     {
       "path": "stars:>1",
-      "name": "ALL",
-      "short_name": "ALL",
+      "name": "Java",
+      "short_name": "Java",
+      "checked": true
+    },
+    {
+      "path": "Android",
+      "name": "Android",
       "checked": true
     },
     {
@@ -31,7 +36,7 @@
       "checked": false
     },
     {
-      "path": "react",
+      "path": "React",
       "name": "React",
       "checked": true
     }

@@ -24,28 +24,28 @@ export default (pros: any) => {
     const [msg, setMsg] = useState('ddd');
     const [helpUrl, setHelpUrl] = useState('https:www.baidu.com');
     const onLogin = () => {
-        NavigationUtil.resetHomePage({navigation});
-        // if (userName === '' || password === '') {
-        //     setMsg('用户名或密码不能为空');
-        // } 
-        // setHelpUrl('');
-        // setMsg('');
-        // LoginDao.getInstance()
-        // .login(userName,password)
-        // .then((res) => {
-        //     setMsg('登录成功');
-        // }).catch((e) => {
-        //     const {code,data:{helpUrl = ''} ={}, msg} = e;
-        //     setMsg(msg);
-        //     setHelpUrl(helpUrl)
-        // })
-     };
+        if (userName === '' || password === '') {
+            setMsg('用户名或密码不能为空');
+        }
+        setHelpUrl('');
+        setMsg('');
+        LoginDao.getInstance()
+            .login(userName, password)
+            .then((res) => {
+                setMsg('登录成功');
+                NavigationUtil.resetHomePage({ navigation });
+            }).catch((e) => {
+                const { code, data: { helpUrl = '' } = {}, msg } = e;
+                setMsg(msg);
+                setHelpUrl(helpUrl)
+            })
+    };
     return (
         <SafeAreaView style={styles.root}>
-            <NavBar title='登录' rightTitle='注册' 
-                onRightClick={()=>{
+            <NavBar title='登录' rightTitle='注册'
+                onRightClick={() => {
                     debugger
-                    NavigationUtil.registration({navigation});
+                    NavigationUtil.registration({ navigation });
                 }}
             />
             <View style={styles.line} />

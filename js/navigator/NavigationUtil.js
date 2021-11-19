@@ -41,19 +41,16 @@ export default class NavigationUtil {
         if (!navigation) {
             navigation = NavigationUtil.navigation;
         }
-        debugger
         navigation.dispatch(StackActions.replace('LoginPage', {}));
     }
     /**
      * 重置到注册
      */
      static registration(parmas = {}) {
-        debugger
         const { navigation } = parmas;
         if (!navigation) {
             navigation = NavigationUtil.navigation;
         }
-        
         navigation.dispatch(StackActions.replace('RegistrationPage', {}));
     }
 }

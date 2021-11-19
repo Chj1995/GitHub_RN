@@ -27,11 +27,11 @@ export default class WelcomPage extends Component {
         const {navigation}=this.props;
         // 定时器，延时200毫秒
         this.timer=setTimeout(()=>{
-            // if (boarding) {
+            if (boarding) {
                 NavigationUtil.resetHomePage({navigation});
-            // } else {
-            //     NavigationUtil.login({navigation});
-            // }
+            } else {
+                NavigationUtil.login({navigation});
+            }
         },200);
     }
     render() {
